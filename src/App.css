@@ -1,0 +1,7 @@
+.ant-menu-item.ant-menu-overflow-item {
+  background: transparent;
+}
+
+.ant-menu-item:hover {
+  background: #e6f4ff
+}

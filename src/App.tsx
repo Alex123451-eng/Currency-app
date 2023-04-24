@@ -1,15 +1,37 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import { Button } from "antd";
+import { Button, Menu } from "antd";
+
+import { MainPage } from "./pages/mainPage";
 
 import "antd/dist/reset.css";
 import "./App.css";
 
+const Nav = () => {
+  return (
+    <Menu mode="horizontal">
+      <Link to="/">
+        <Menu.Item className="my-class">Main Page</Menu.Item>
+      </Link>
+      <Link to="/convert-page">
+        <Menu.Item>Convert page</Menu.Item>
+      </Link>
+    </Menu>
+  );
+};
+
 const App = () => (
-  <BrowserRouter>
-    <Button type="primary">Button</Button>
-  </BrowserRouter>
+  <Router>
+    <Nav />
+    <Route exact path="/">
+      {/* <Button type="primary">Button</Button> */}
+      <MainPage />
+    </Route>
+    <Route path="/convert-page">
+      <>convert!</>
+    </Route>
+  </Router>
 );
 
 export default App;
