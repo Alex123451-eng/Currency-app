@@ -1,0 +1,42 @@
+.convert-page-wrapper {
+  margin: var(--md) auto;
+}
+
+.convert-page-wrapper__from,
+.convert-page-wrapper__to {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--md);
+}
+
+.convert-page-wrapper__choose-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 12%;
+  min-width: var(--xxxxl);
+  margin-right: var(--md);
+}
+
+.convert-page-wrapper__from-input,
+.convert-page-wrapper__to-input {
+  width: 25%;
+}
+
+@media (max-width: 768px) {
+  .convert-page-wrapper {
+    max-width: 100%;
+    margin: var(--md);
+  }
+
+  .convert-page-wrapper__from,
+  .convert-page-wrapper__to {
+    justify-content: space-between;
+  }
+
+  .convert-page-wrapper__from-input,
+  .convert-page-wrapper__to-input {
+    width: 50%;
+  }
+}

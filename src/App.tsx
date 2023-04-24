@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import { Menu } from "antd";
 
-import { MainPage } from "./pages/mainPage";
+import { MainPage } from "./pages/mainPage/mainPage";
+import { ConvertPage } from "./pages/convertPage/convertPage";
 
 import "antd/dist/reset.css";
 import "./App.css";
@@ -28,7 +29,7 @@ const App = () => (
       <MainPage />
     </Route>
     <Route path="/convert-page">
-      <>convert!</>
+      <ConvertPage />
     </Route>
   </Router>
 );

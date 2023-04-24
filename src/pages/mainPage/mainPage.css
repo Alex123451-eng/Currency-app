@@ -1,4 +1,4 @@
-.wrapper {
+.main-page-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,58 +9,58 @@
   height: 100px;
 }
 
-.base-currency-string {
+.main-page-wrapper__currency-string {
   margin-right: var(--lg);
 }
 
-.currency {
+.main-page-wrapper__currency {
   line-height: var(--lg);
 }
 
-.base-select-wrapper {
+.main-page-wrapper__base-select {
   display: flex;
   align-items: center;
 }
 
-.update-button {
+.main-page-wrapper__update-button {
   font-family: 'nunito-regular', sans-serif;
   margin-left: var(--lg);
 }
 
 @media (max-width: 1024px) {
-  .wrapper {
+  .main-page-wrapper {
     max-width: 80%;
   }
 
-  .currency-wrapper {
+  .main-page-wrapper__currency-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
   }
 
-  .base-currency-string {
+  .main-page-wrapper__currency-string {
     margin-right: 0;
     margin-bottom: var(--sm);
   }
 
-  .base-select-wrapper {
+  .main-page-wrapper__base-select {
     flex-direction: column;
     align-items: flex-end;
   }
 
-  .ant-select {
+  .main-page-wrapper .ant-select {
     width: 100%;
     margin-bottom: var(--sm);
   }
 
-  .update-button {
+  .main-page-wrapper__update-button {
     width: 99%;
   }
 }
 
 @media (max-width: 768px) {
-  .wrapper {
+  .main-page-wrapper {
     max-width: 100%;
     margin: var(--md);
   }
