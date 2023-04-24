@@ -2147,6 +2147,11 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-3.0.1.tgz#5f8f2bca0a5863cb69bc0b0acd88c96cb1d4ae10"
   integrity sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==
 
+"@types/money@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/money/-/money-0.2.0.tgz#68a87f11d16f2201ed6212c7b346d8f56ec3a0b5"
+  integrity sha512-K5C16YIGwCmoHRWZxo3mywD31Vmm1MyQBAlMskbevb26r/XSwOdWS4JMowzdtOD3Hlu9fbCIT3c0KMach/SqRg==
+
 "@types/node@*":
   version "18.16.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.0.tgz#4668bc392bb6938637b47e98b1f2ed5426f33316"
@@ -6602,6 +6607,11 @@ mkdirp@~0.5.1:
   integrity sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==
   dependencies:
     minimist "^1.2.6"
+
+money@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/money/-/money-0.2.0.tgz#7eada2df1009df935fa18d4fb1d620ddacce02c2"
+  integrity sha512-0AblpmOvf7yXW9Or4iBHvms38blV74pwjF/G3qI2PDbcAowQEYgEJPqvnuGBYTuWXtZQSrN5g49RqyezdKhwGg==
 
 ms@2.0.0:
   version "2.0.0"

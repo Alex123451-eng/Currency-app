@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import { Button, Menu } from "antd";
+import { Menu } from "antd";
 
 import { MainPage } from "./pages/mainPage";
 
@@ -10,12 +10,12 @@ import "./App.css";
 
 const Nav = () => {
   return (
-    <Menu mode="horizontal">
+    <Menu className="menu" mode="horizontal">
       <Link to="/">
-        <Menu.Item className="my-class">Main Page</Menu.Item>
+        <Menu.Item className="menu-item">Main Page</Menu.Item>
       </Link>
       <Link to="/convert-page">
-        <Menu.Item>Convert page</Menu.Item>
+        <Menu.Item className="menu-item">Convert page</Menu.Item>
       </Link>
     </Menu>
   );
@@ -25,7 +25,6 @@ const App = () => (
   <Router>
     <Nav />
     <Route exact path="/">
-      {/* <Button type="primary">Button</Button> */}
       <MainPage />
     </Route>
     <Route path="/convert-page">
