@@ -8,7 +8,7 @@ export const getData = async () => {
     [result.base]: 1,
   };
 
-  const { rates, base } = result;
+  const { rates } = result;
 
-  return { rates, base };
+  return { rates };
 };

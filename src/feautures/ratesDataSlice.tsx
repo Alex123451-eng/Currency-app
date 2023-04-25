@@ -4,7 +4,6 @@ import { RootState } from "../app/store";
 import { IRates } from "../types/types";
 
 const initialState: IRates = {
-  base: "",
   rates: {},
 };
 
@@ -13,10 +12,7 @@ const ratesDataSlice = createSlice({
   initialState,
   reducers: {
     setRatesData(state, action) {
-      const { rates, base } = action.payload;
-
-      state.base = base;
-      state.rates = rates;
+      state.rates = action.payload;
     },
   },
 });

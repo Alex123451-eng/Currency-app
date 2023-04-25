@@ -3,7 +3,6 @@ export interface ICurrency {
 }
 
 export interface IRates {
-  base: string;
   rates: ICurrency;
 }
 

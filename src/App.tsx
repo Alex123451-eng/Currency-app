@@ -19,10 +19,10 @@ export const App = () => {
   const { ratesData, saveRatesData } = useRatesData();
 
   const initData = async () => {
-    const { rates, base } = await getData();
+    const { rates } = await getData();
 
     fx.rates = rates;
-    saveRatesData({ rates, base });
+    saveRatesData(rates);
   };
 
   useEffect(() => {
