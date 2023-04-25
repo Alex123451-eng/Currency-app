@@ -15,7 +15,7 @@ import { getData } from "./utils/getData";
 import "antd/dist/reset.css";
 import "./App.css";
 
-const App = () => {
+export const App = () => {
   const { ratesData, saveRatesData } = useRatesData();
 
   const initData = async () => {
@@ -53,5 +53,3 @@ const App = () => {
     </Router>
   );
 };
-
-export default App;
