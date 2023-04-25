@@ -1,6 +1,5 @@
 import { Select } from "antd";
-
-import { ISelectDropDown } from "./types/types";
+import { ISelectDropDown } from "../../types/types";
 
 export const SelectDropDown: React.FC<ISelectDropDown> = ({
   name,
@@ -20,6 +19,7 @@ export const SelectDropDown: React.FC<ISelectDropDown> = ({
       })}
       onSelect={handleSelect}
       value={value}
+      data-testid="select"
     />
   );
 };

@@ -2,9 +2,9 @@ import { useState } from "react";
 import fx from "money";
 import { Input, Button } from "antd";
 
-import { useRatesData } from "../../feautures/useRatesData";
+import { SelectDropDown } from "../../components/selectDropDown/selectDropDown";
 
-import { SelectDropDown } from "../../components";
+import { useRatesData } from "../../feautures/useRatesData";
 
 import { IInputValues, ISelectEvent } from "../../types/types";
 
@@ -19,7 +19,6 @@ export const ConvertPage = () => {
     fromInput: "",
     toInput: "",
   });
-
   const { ratesData } = useRatesData();
 
   const handleSelect = (_: string, e: ISelectEvent) => {
@@ -66,30 +65,6 @@ export const ConvertPage = () => {
     }
 
     setInputValues({ fromInput, toInput });
-
-    // if (name === "fromInput") {
-    //   setInputValues({
-    //     fromInput: value,
-    //     toInput: `${+fx
-    //       .convert(value, {
-    //         from,
-    //         to,
-    //       })
-    //       .toFixed(2)}`,
-    //   });
-    // }
-
-    // if (name === "toInput") {
-    //   setInputValues({
-    //     fromInput: `${+fx
-    //       .convert(value, {
-    //         from: to,
-    //         to: from,
-    //       })
-    //       .toFixed(2)}`,
-    //     toInput: value,
-    //   });
-    // }
   };
 
   const handleBtnClick = () => {

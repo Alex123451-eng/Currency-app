@@ -4,34 +4,19 @@ import { RootState } from "../app/store";
 import { IRates } from "../types/types";
 
 const initialState: IRates = {
+  base: "",
   rates: {},
 };
-
-/* 
-  IRates ->
-
-  {
-    rates: {
-      RUB: '11',
-      USD: '123',
-    },
-  }
-
-  ICurrency ->
-
-  {
-    RUB: '11',
-    USD: '123',
-  }
-*/
 
 const ratesDataSlice = createSlice({
   name: "ratesData",
   initialState,
   reducers: {
     setRatesData(state, action) {
-      console.log("action.payload ", action.payload);
-      state.rates = action.payload;
+      const { rates, base } = action.payload;
+
+      state.base = base;
+      state.rates = rates;
     },
   },
 });

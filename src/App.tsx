@@ -1,37 +1,57 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { Menu } from "antd";
+import fx from "money";
 
 import { MainPage } from "./pages/mainPage/mainPage";
 import { ConvertPage } from "./pages/convertPage/convertPage";
+import { Nav } from "./components/nav/nav";
+import { Loader } from "./components/loader/loader";
+
+import { useRatesData } from "./feautures/useRatesData";
+
+import { getData } from "./utils/getData";
 
 import "antd/dist/reset.css";
 import "./App.css";
 
-const Nav = () => {
+const App = () => {
+  const { ratesData, saveRatesData } = useRatesData();
+
+  const initData = async () => {
+    const { rates, base } = await getData();
+
+    fx.rates = rates;
+    saveRatesData({ rates, base });
+  };
+
+  useEffect(() => {
+    initData();
+
+    const timerId = setInterval(() => {
+      initData();
+    }, 60000);
+
+    return () => clearInterval(timerId);
+  }, []);
+
   return (
-    <Menu className="menu" mode="horizontal">
-      <Link to="/">
-        <Menu.Item className="menu-item">Main Page</Menu.Item>
-      </Link>
-      <Link to="/convert-page">
-        <Menu.Item className="menu-item">Convert page</Menu.Item>
-      </Link>
-    </Menu>
+    <Router>
+      <Nav />
+      {Object.keys(ratesData.rates).length ? (
+        <>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+          <Route path="/convert-page">
+            <ConvertPage />
+          </Route>
+        </>
+      ) : (
+        <Loader />
+      )}
+    </Router>
   );
 };
-
-const App = () => (
-  <Router>
-    <Nav />
-    <Route exact path="/">
-      <MainPage />
-    </Route>
-    <Route path="/convert-page">
-      <ConvertPage />
-    </Route>
-  </Router>
-);
 
 export default App;

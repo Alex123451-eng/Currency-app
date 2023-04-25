@@ -1,39 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import fx from "money";
 import { Button } from "antd";
 
+import { SelectDropDown } from "../../components/selectDropDown/selectDropDown";
+
 import { useRatesData } from "../../feautures/useRatesData";
 
-import { SelectDropDown } from "../../components";
+import { getData } from "../../utils/getData";
 
 import { ISelectEvent } from "../../types/types";
 
 import "./mainPage.css";
 
 export const MainPage = () => {
-  const [base, setBase] = useState<string>();
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [base, setBase] = useState<string>("RUB");
 
-  const { saveRatesData, ratesData } = useRatesData();
+  const { ratesData, saveRatesData } = useRatesData();
 
-  const getData = async () => {
-    const response = await fetch("https://www.cbr-xml-daily.ru/latest.js");
-    const data = await response.json();
-    const result = await data;
+  const initData = async () => {
+    const { rates, base } = await getData();
 
-    result.rates = {
-      ...result.rates,
-      [result.base]: 1,
-    };
-
-    fx.rates = result.rates;
-    fx.base = result.base;
-
-    console.log("results.rates ", result.rates);
-
-    saveRatesData(result.rates);
-    setBase(result.base);
-    setIsDataLoaded(true);
+    fx.rates = rates;
+    saveRatesData({ rates, base });
   };
 
   const handleSelect = (_: string, e: ISelectEvent) => {
@@ -41,50 +29,41 @@ export const MainPage = () => {
   };
 
   const handleUpdateBtnClick = () => {
-    getData();
+    initData();
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <>
-      {isDataLoaded && (
-        <div className="main-page-wrapper">
-          <div className="main-page-wrapper__currency-wrapper">
-            <div className="main-page-wrapper__currency">
-              <span className="main-page-wrapper__rub bold">RUB:</span>{" "}
-              {fx.convert(1, { from: "RUB", to: base }).toFixed(2)}
-            </div>
-            <div className="main-page-wrapper__currency">
-              <span className="main-page-wrapper__usd bold">USD:</span>{" "}
-              {fx.convert(1, { from: "USD", to: base }).toFixed(2)}
-            </div>
-            <div className="main-page-wrapper__currency">
-              <span className="main-page-wrapper__usd bold">EUR:</span>{" "}
-              {fx.convert(1, { from: "EUR", to: base }).toFixed(2)}
-            </div>
+      <div className="main-page-wrapper">
+        <div className="main-page-wrapper__currency-wrapper">
+          <div className="main-page-wrapper__currency">
+            <span className="main-page-wrapper__rub bold">RUB: </span>
+            {fx.convert(1, { from: "RUB", to: base }).toFixed(2)}
           </div>
-
-          <div className="main-page-wrapper__base-select">
-            <div className="main-page-wrapper__currency-string">
-              Select <span className="bold">base</span> currency
-            </div>
-            <SelectDropDown
-              rates={ratesData.rates}
-              handleSelect={handleSelect}
-            />
-            <Button
-              type="primary"
-              className="main-page-wrapper__update-button"
-              onClick={handleUpdateBtnClick}
-            >
-              Update rates
-            </Button>
+          <div className="main-page-wrapper__currency">
+            <span className="main-page-wrapper__usd bold">USD: </span>
+            {fx.convert(1, { from: "USD", to: base }).toFixed(2)}
+          </div>
+          <div className="main-page-wrapper__currency">
+            <span className="main-page-wrapper__usd bold">EUR: </span>
+            {fx.convert(1, { from: "EUR", to: base }).toFixed(2)}
           </div>
         </div>
-      )}
+
+        <div className="main-page-wrapper__base-select">
+          <div className="main-page-wrapper__currency-string">
+            Select <span className="bold">base</span> currency
+          </div>
+          <SelectDropDown rates={ratesData.rates} handleSelect={handleSelect} />
+          <Button
+            type="primary"
+            className="main-page-wrapper__update-button"
+            onClick={handleUpdateBtnClick}
+          >
+            Update rates
+          </Button>
+        </div>
+      </div>
     </>
   );
 };
