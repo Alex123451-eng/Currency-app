@@ -23,9 +23,9 @@ export const ConvertPage = () => {
   const { ratesData } = useRatesData();
 
   const handleSelect = (_: string, e: ISelectEvent) => {
-    console.log("_, e ", _, e);
     const { label, name } = e;
     const { fromInput, toInput } = inputValues;
+    let { from, to } = selectValues;
 
     setSelectValues({
       ...selectValues,
@@ -34,34 +34,20 @@ export const ConvertPage = () => {
 
     if (fromInput === "" || toInput === "") return;
 
-    if (name === "from") {
-      setInputValues({
-        fromInput,
-        toInput: `${+fx
-          .convert(fromInput, {
-            from: label,
-            to: selectValues.to,
-          })
-          .toFixed(2)}`,
-      });
-    }
+    if (name === "from") from = label;
+    else to = label;
 
-    if (name === "to") {
-      setInputValues({
-        fromInput: `${+fx
-          .convert(toInput, {
-            from: selectValues.from,
-            to: label,
-          })
-          .toFixed(2)}`,
-        toInput,
-      });
-    }
+    setInputValues({
+      fromInput,
+      toInput: `${+fx.convert(fromInput, { from, to }).toFixed(2)}`,
+    });
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
-    const { from, to } = selectValues;
+    let { from, to } = selectValues;
+    let fromInput = value;
+    let toInput = `${+fx.convert(value, { from, to }).toFixed(2)}`;
 
     if (value === "") {
       setInputValues({
@@ -72,29 +58,38 @@ export const ConvertPage = () => {
       return;
     }
 
-    if (name === "fromInput") {
-      setInputValues({
-        fromInput: value,
-        toInput: `${+fx
-          .convert(value, {
-            from,
-            to,
-          })
-          .toFixed(2)}`,
-      });
-    }
+    if (!value.match(/^[0-9]*[.]?[0-9]{0,2}$/)) return;
 
     if (name === "toInput") {
-      setInputValues({
-        fromInput: `${+fx
-          .convert(value, {
-            from: to,
-            to: from,
-          })
-          .toFixed(2)}`,
-        toInput: value,
-      });
+      [from, to] = [to, from];
+      [fromInput, toInput] = [toInput, fromInput];
     }
+
+    setInputValues({ fromInput, toInput });
+
+    // if (name === "fromInput") {
+    //   setInputValues({
+    //     fromInput: value,
+    //     toInput: `${+fx
+    //       .convert(value, {
+    //         from,
+    //         to,
+    //       })
+    //       .toFixed(2)}`,
+    //   });
+    // }
+
+    // if (name === "toInput") {
+    //   setInputValues({
+    //     fromInput: `${+fx
+    //       .convert(value, {
+    //         from: to,
+    //         to: from,
+    //       })
+    //       .toFixed(2)}`,
+    //     toInput: value,
+    //   });
+    // }
   };
 
   const handleBtnClick = () => {
@@ -129,7 +124,7 @@ export const ConvertPage = () => {
           value={inputValues.fromInput}
           onChange={handleInput}
           placeholder="convert from"
-          maxLength={5}
+          maxLength={10}
           className="convert-page-wrapper__from-input"
         />
       </div>
@@ -148,7 +143,7 @@ export const ConvertPage = () => {
           value={inputValues.toInput}
           onChange={handleInput}
           placeholder="convert to"
-          maxLength={5}
+          maxLength={10}
           className="convert-page-wrapper__to-input"
         />
       </div>
