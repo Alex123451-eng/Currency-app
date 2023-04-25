@@ -7,6 +7,24 @@ const initialState: IRates = {
   rates: {},
 };
 
+/* 
+  IRates ->
+
+  {
+    rates: {
+      RUB: '11',
+      USD: '123',
+    },
+  }
+
+  ICurrency ->
+
+  {
+    RUB: '11',
+    USD: '123',
+  }
+*/
+
 const ratesDataSlice = createSlice({
   name: "ratesData",
   initialState,

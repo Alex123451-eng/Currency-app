@@ -1,4 +1,6 @@
 .convert-page-wrapper {
+  max-width: 50%;
+  font-family: 'nunito-regular', sans-serif;
   margin: var(--md) auto;
 }
 
@@ -19,9 +21,14 @@
   margin-right: var(--md);
 }
 
-.convert-page-wrapper__from-input,
-.convert-page-wrapper__to-input {
-  width: 25%;
+.convert-page-wrapper__change-btn {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .convert-page-wrapper {
+    max-width: 80%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -33,10 +40,5 @@
   .convert-page-wrapper__from,
   .convert-page-wrapper__to {
     justify-content: space-between;
-  }
-
-  .convert-page-wrapper__from-input,
-  .convert-page-wrapper__to-input {
-    width: 50%;
   }
 }

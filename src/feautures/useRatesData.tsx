@@ -2,14 +2,14 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 import { setRatesData, selectRatesData } from "./ratesDataSlice";
 
-import { IRates } from "../types/types";
+import { ICurrency } from "../types/types";
 
 export const useRatesData = () => {
   const dispatch = useAppDispatch();
 
   const ratesData = useAppSelector(selectRatesData);
 
-  const saveRatesData = (ratesData: IRates) => {
+  const saveRatesData = (ratesData: ICurrency) => {
     dispatch(setRatesData(ratesData));
   };
 

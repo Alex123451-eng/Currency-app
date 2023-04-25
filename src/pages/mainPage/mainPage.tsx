@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import fx from "money";
-import { Select, Button } from "antd";
+import { Button } from "antd";
 
 import { useRatesData } from "../../feautures/useRatesData";
 
 import { SelectDropDown } from "../../components";
 
+import { ISelectEvent } from "../../types/types";
+
 import "./mainPage.css";
 
 export const MainPage = () => {
-  const [base, setBase] = useState();
+  const [base, setBase] = useState<string>();
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const { saveRatesData, ratesData } = useRatesData();
@@ -27,12 +29,14 @@ export const MainPage = () => {
     fx.rates = result.rates;
     fx.base = result.base;
 
+    console.log("results.rates ", result.rates);
+
     saveRatesData(result.rates);
     setBase(result.base);
     setIsDataLoaded(true);
   };
 
-  const handleSelect = (_: any, e: any) => {
+  const handleSelect = (_: string, e: ISelectEvent) => {
     setBase(e.label);
   };
 
