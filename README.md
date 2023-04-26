@@ -11,7 +11,7 @@
 
 yarn watch
 
-### Использованные технологии
+## Использованные технологии
 
 1. React (hooks, custom hooks)
 2. Redux
@@ -19,7 +19,7 @@ yarn watch
 4. TypeScript
 5. React Router (v5)
 
-### Структура
+## Структура
 
 ```
 project
